@@ -1,0 +1,41 @@
+ 1  package equals;
+ 2
+ 3  public class Manager extends Employee
+ 4  {
+ 5     private double bonus;
+ 6
+ 7     public Manager(String name, double salary, int year, int month, int day)
+ 8     {
+ 9        super(name, salary, year, month, day);
+10        bonus = 0;
+11     }
+12
+13     public double getSalary()
+14     {
+15        double baseSalary = super.getSalary();
+16        return baseSalary + bonus;
+17     }
+18
+19     public void setBonus(double bonus)
+20     {
+21        this.bonus = bonus;
+22     }
+23
+24     public boolean equals(Object otherObject)
+25     {
+26        if (!super.equals(otherObject)) return false;
+27        var other = (Manager) otherObject;
+28        // super.equals checked that this and other belong to the same class
+29        return bonus == other.bonus;
+30     }
+31
+32     public int hashCode()
+33     {
+34        return java.util.Objects.hash(super.hashCode(), bonus);
+35     }
+36
+37     public String toString()
+38     {
+39        return super.toString() + "[bonus=" + bonus + "]";
+40     }
+41  }

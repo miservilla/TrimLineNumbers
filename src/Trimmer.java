@@ -9,11 +9,9 @@ public class Trimmer
 {
     public static void main(String[] args)
     {
-        String fileName;
         Scanner console = new Scanner(System.in);
         System.out.print("Type in name of file: ");
-        fileName = console.nextLine();
-        File file = new File(fileName);
+        File file = new File(console.nextLine());
 
         try
         {
@@ -22,7 +20,7 @@ public class Trimmer
             while (scnr.hasNextLine())
             {
                 String line = scnr.nextLine();
-                try (FileWriter writer = new FileWriter("Trimmed" + fileName,true);
+                try (FileWriter writer = new FileWriter("Trimmed" + file,true);
                      BufferedWriter bw = new BufferedWriter(writer))
                 {
                     {
@@ -44,7 +42,7 @@ public class Trimmer
         {
             System.out.println("File not found!");
         }
-        File oldfile = new File("Trimmed" + fileName);
+        File oldfile = new File("Trimmed" + file);
         oldfile.renameTo(file);
 
     }

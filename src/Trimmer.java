@@ -23,7 +23,6 @@ public class Trimmer
             while (scnr.hasNextLine())
             {
                 String line = scnr.nextLine();
-//                System.out.println(line.substring(trimNumber));
                 try (FileWriter writer = new FileWriter("Trimmed" + fileName,true);
                      BufferedWriter bw = new BufferedWriter(writer))
                 {

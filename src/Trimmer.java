@@ -14,8 +14,6 @@ public class Trimmer
         Scanner console = new Scanner(System.in);
         System.out.print("Type in name of file: ");
         fileName = console.nextLine();
-        System.out.print("Type in digit size to trim: ");
-        trimNumber = console.nextInt();
         File file = new File(fileName);
 
         try
@@ -25,12 +23,20 @@ public class Trimmer
             while (scnr.hasNextLine())
             {
                 String line = scnr.nextLine();
-                System.out.println(line.substring(trimNumber));
+//                System.out.println(line.substring(trimNumber));
                 try (FileWriter writer = new FileWriter("Trimmed" + fileName,true);
                      BufferedWriter bw = new BufferedWriter(writer))
                 {
                     {
-                        bw.write(line.substring(trimNumber) + "\n");
+                        while (!(line.isEmpty()) && line.charAt(0) == ' ')
+                        {
+                            line = line.substring(1);
+                        }
+                        while (!(line.isEmpty()) && Character.isDigit(line.charAt(0)))
+                        {
+                            line = line.substring(1);
+                        }
+                        bw.write(line + "\n");
                     }
                 }
             }
@@ -40,7 +46,7 @@ public class Trimmer
         {
             System.out.println("File not found!");
         }
-        File oldfile = new  File("Trimmed" + fileName);
+        File oldfile = new File("Trimmed" + fileName);
         oldfile.renameTo(file);
 
     }

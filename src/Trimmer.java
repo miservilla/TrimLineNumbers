@@ -38,7 +38,7 @@ public class Trimmer
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            System.out.println("File not found!");
         }
         File oldfile = new  File("Trimmed" + fileName);
         oldfile.renameTo(file);

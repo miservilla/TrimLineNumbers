@@ -13,11 +13,11 @@ public class Trimmer
         System.out.print("Type in name of file: ");
         File file = new File(console.nextLine());
 
-        try (PrintWriter out = new PrintWriter("trimmed" + file); Scanner scnr = new Scanner(file))
+        try (PrintWriter out = new PrintWriter("trimmed" + file); Scanner scanner = new Scanner(file))
         {
-            while (scnr.hasNextLine())
+            while (scanner.hasNextLine())
             {
-                String line = scnr.nextLine();
+                String line = scanner.nextLine();
                     {
                         //Code block to parse leading blank space and numbers from line.
                         while (!(line.isEmpty()) && line.charAt(0) == ' ')

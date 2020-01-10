@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 
 /**
- * Java program to trim leading line numbers from file.
+ * Java program to trim leading line numbers from file. Create text file in main folder and run.
  */
 
 public class Trimmer
@@ -13,16 +13,11 @@ public class Trimmer
         System.out.print("Type in name of file: ");
         File file = new File(console.nextLine());
 
-        try
+        try (PrintWriter out = new PrintWriter("trimmed" + file); Scanner scnr = new Scanner(file))
         {
-            Scanner scnr = new Scanner(file);
-
             while (scnr.hasNextLine())
             {
                 String line = scnr.nextLine();
-                try (FileWriter writer = new FileWriter("Trimmed" + file,true);
-                     BufferedWriter bw = new BufferedWriter(writer))
-                {
                     {
                         while (!(line.isEmpty()) && line.charAt(0) == ' ')
                         {
@@ -32,18 +27,13 @@ public class Trimmer
                         {
                             line = line.substring(1);
                         }
-                        bw.write(line + "\n");
+                        out.println(line);
                     }
-                }
             }
-            scnr.close();
         }
-        catch (IOException e)
+        catch (FileNotFoundException e)
         {
             System.out.println("File not found!");
         }
-        File oldfile = new File("Trimmed" + file);
-        oldfile.renameTo(file);
-
     }
 }

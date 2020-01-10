@@ -19,6 +19,7 @@ public class Trimmer
             {
                 String line = scnr.nextLine();
                     {
+                        //Code block to parse leading blank space and numbers from line.
                         while (!(line.isEmpty()) && line.charAt(0) == ' ')
                         {
                             line = line.substring(1);
